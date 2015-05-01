@@ -41,6 +41,16 @@ app.get('/ping', function(conn){
 		// .then(OK(conn));
 });
 
+var api = require("./api");
+
+app.get('/school/:id/stats', function(conn){
+	var id = conn.params.id;
+	return dynamodb
+		.getSchoolStats(id)
+		.then(api.formatStats)
+		.then(OK(conn));
+});
+
 app.get('/school/:id', function(conn){
 	var id = conn.params.id;
 	return dynamodb

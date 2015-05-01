@@ -28,3 +28,15 @@ exports.getSchools = function(id)
       return data.result;
     })
 }
+
+exports.getSchoolStats = function(id)
+{
+  return client
+    .newQueryBuilder('schoolregister-stats')
+    .setHashKey('id', id)
+    .setLimit(20)
+    .execute()
+    .then(function(data){
+      return data.result;
+    })
+}
